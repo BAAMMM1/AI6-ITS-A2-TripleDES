@@ -9,7 +9,7 @@ public class TestTripleDES {
 	public void testTripleDES(){
 		TripleDES tripleDES = new TripleDES();
 		try {
-			tripleDES.start("test/3DESTest.enc", "test/3DESTest.key", "test/TestOut3.pdf", "encrpyt");
+			tripleDES.start("test/3DESTest.enc", "test/3DESTest.key", "test/TestOut.pdf", "encrpyt");
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
