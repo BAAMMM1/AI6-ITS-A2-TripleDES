@@ -367,7 +367,7 @@ public class DES
 
     /**
      * Decrypt one block of data. The encrypted data is taken from
-     * <code>dest[i..i+7]</code> and plaintext is written to
+     * <code>dest[i..i+7]</cod> and plaintext is written to
      * <code>source[j..j+7]</code>.
      */
     public void decrypt(byte[] source, int i, byte[] dest, int j)
