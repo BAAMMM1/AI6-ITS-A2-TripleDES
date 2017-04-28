@@ -6,7 +6,7 @@ import java.util.LinkedList;
 
 public class TripleDES {
 
-	private byte[] vektorDES;
+	private byte[] vectorDES;
 	private byte[] keyDES1;
 	private byte[] keyDES2;
 	private byte[] keyDES3;
@@ -31,7 +31,7 @@ public class TripleDES {
 			this.cryptForward(pathIn, pathOut, true);
 
 		} else if (operation.equals("decrypt")) {
-			this.cryptForward(pathIn, pathOut, false);
+			this.cryptForward(pathIn, pathOut, true);
 
 		} else {
 			System.out.println("Operation must be encrypt or decrypt");
@@ -46,7 +46,7 @@ public class TripleDES {
 		this.keyDES1 = keyFile.get(0);
 		this.keyDES2 = keyFile.get(1);
 		this.keyDES3 = keyFile.get(2);
-		this.vektorDES = keyFile.get(3);
+		this.vectorDES = keyFile.get(3);
 
 		this.desKey1 = new DES(keyDES1);
 		this.desKey2 = new DES(keyDES2);
@@ -65,7 +65,7 @@ public class TripleDES {
 			if(i != 0){
 				leftBlock = fileInBlocks.get(i - 1);
 			} else {
-				leftBlock = this.vektorDES;
+				leftBlock = this.vectorDES;
 			}
 
 			byte[] rightBlock = fileInBlocks.get(i);
@@ -96,15 +96,6 @@ public class TripleDES {
 		return tripleCryptedCipherText;
 	}
 
-	private byte[] cryptDED(byte[] chiffreText) {
-		byte[] tripleCryptedCipherText = new byte[8];
-
-		this.desKey3.decrypt(chiffreText, 0, tripleCryptedCipherText, 0);
-		this.desKey2.encrypt(tripleCryptedCipherText, 0, tripleCryptedCipherText, 0);
-		this.desKey1.decrypt(tripleCryptedCipherText, 0, tripleCryptedCipherText, 0);
-
-		return tripleCryptedCipherText;
-	}
 
 	public static void main(String[] args) {
 		if (args.length == 4) {
